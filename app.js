@@ -37,3 +37,22 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
 app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'))
+
+
+
+
+app.get('/404', (request, response) => {
+        response.send({
+            error: 'Page not found'
+        })
+    })
+    
+    app.listen(port, () => {
+        console.log(`Server is up on the port ${port}`);
+        weather_info.getWeather(49.246292, -123.1207).then((result) =>{
+            weather = `The temperature in Vancouver is: ${result.temperature}`
+            console.log(weather)
+        })
+    });
+    
+    
