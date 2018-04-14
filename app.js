@@ -32,6 +32,7 @@ const fs = require('fs');
 
 const port = process.env.PORT || 8080;
     
+var app = express();
 
 app.set('view engine', 'hbs');
 hbs.registerPartials(__dirname + '/views/partials');
@@ -39,6 +40,11 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.static(__dirname + '/views'))
 
 
+app.get('/', (request, response) => {
+        response.render('home.hbs', {
+                title: 'Home Page'
+        })
+})
 
 
 app.get('/404', (request, response) => {
@@ -47,12 +53,8 @@ app.get('/404', (request, response) => {
         })
     })
     
-    app.listen(port, () => {
-        console.log(`Server is up on the port ${port}`);
-        weather_info.getWeather(49.246292, -123.1207).then((result) =>{
-            weather = `The temperature in Vancouver is: ${result.temperature}`
-            console.log(weather)
-        })
-    });
-    
-    
+app.listen(port, () => {
+console.log(`Server is up on the port ${port}`);
+
+});
+
