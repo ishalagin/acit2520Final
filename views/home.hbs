@@ -2,16 +2,28 @@
 <html>
     <head>
         <title>{{title}}</title>
-        <link rel="stylesheet" type="text/css" href="./styles/general.css">
+        <link rel="stylesheet" type="text/css" href="./general.css">
+        <link rel="stylesheet" type="text/css" href="./pages.css">
 
     </head>
     <body>
-        <div id="top_links" class="links_bar">
-            <div class="button_link"><p>MAIN</p></div>
-            <div class="button_link"><p>PAGE1</p></div>
-            <div class="button_link"><p>PAGE2</p></div>
+        {{> home}}
+        {{!-- <div id="cards" class="header">
+            <div class="headerButtons"><p>MAIN</p></div>
+            <div class="headerButtons"><p>PAGE1</p></div>
+            <div class="headerButtons"><p>PAGE2</p></div>
+        </div> --}}
+        <div id="middle_page">
+        <div id="forum_display">
+            <form action="/" method="GET">
+                <span class="infotext">Some Infotext</span>
+                <input type="text" id="input1" name="Hello" placeholder="first field">
+                <input type="text" id="input2" name="weather" placeholder="first field">
+                <input type="text" id="input3" name="stuff" placeholder="first field">
+                <button type="submit">Submit</button>
+            </form>
+            <h1>{{text}}</h1>
         </div>
-        <div></div>
     </body>
 
 </html>

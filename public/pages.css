@@ -1,0 +1,12 @@
+#middle_page {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+}
+
+#forum_display{
+    position: absolute;
+    left: 40%;
+    top: 50%;
+    width: 20%;
+}
