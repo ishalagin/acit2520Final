@@ -32,7 +32,52 @@ var getWeather = (latitude, longitude) => {
     })
 };
 
-//export the result
+
+
+var getAddress = (address) => {
+    return new Promise((resolve, reject) => {
+        request({
+            url: `http://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}`,
+            json: true
+        }, (error, response, body) => {
+            if (error) {
+                reject('Cannot connect to Google maps');
+                // console.log('Cannot connect to Google Maps');
+            }
+            
+            else if (body.status === 'OK') {
+                resolve( {
+                    address: body.results[0].formatted_address,
+                    lng: body.results[0].geometry.location.lng,
+                    lat: body.results[0].geometry.location.lat
+                });
+                     
+            }
+            else {
+                reject('The given location is invalid.');
+                // console.log('Cannot find requested address');
+            }
+        });
+    })
+
+};
+
+var API_KEY = '8710265-a5affd9a448016654cdea050f';
+var getPicture = (picturetype) => {
+    return new Promise((resolve, reject) => {
+      request({
+        url: `https://pixabay.com/api/?key=${API_KEY}&q=${encodeURIComponent(picturetype)}&image_type=photo`,
+        json: true
+      }, (error, response, body) => {
+        resolve({
+          'pic1': `${body.url}>`
+        });
+      })
+    })
+  }
+
 module.exports = {
-    getWeather
+    getWeather,
+    getAddress,
+    getPicture
 }
